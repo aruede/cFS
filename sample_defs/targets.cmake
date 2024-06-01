@@ -86,7 +86,8 @@ SET(SPACECRAFT_ID 0x42)
 # and must be loaded explicitly via startup script or command.
 # This list is effectively appended to every TGTx_APPLIST in targets.cmake.
 # Example:
-list(APPEND MISSION_GLOBAL_APPLIST sample_app sample_lib tec)
+# list(APPEND MISSION_GLOBAL_APPLIST sample_app sample_lib tec sbn)
+list(APPEND MISSION_GLOBAL_APPLIST sample_app sample_lib tec sbn sbn_udp sbn_tcp sbn_f_remap)
 
 # The "MISSION_GLOBAL_STATIC_APPLIST" is similar to MISSION_GLOBAL_APPLIST
 # but the apps are statically linked.
@@ -99,7 +100,7 @@ list(APPEND MISSION_GLOBAL_APPLIST sample_app sample_lib tec)
 SET(FT_INSTALL_SUBDIR "host/functional-test")
 
 # Each target board can have its own HW arch selection and set of included apps
-SET(MISSION_CPUNAMES cpu1)
+SET(MISSION_CPUNAMES cpu1 cpu2 cpu3)
 
 SET(cpu1_PROCESSORID 1)
 SET(cpu1_APPLIST ci_lab to_lab sch_lab)
@@ -109,7 +110,11 @@ SET(cpu1_SYSTEM i686-linux-gnu)
 # CPU2 example.  This is not built by default anymore but
 # serves as an example of how one would configure multiple cpus.
 SET(cpu2_PROCESSORID 2)
-SET(cpu2_APPLIST ci_lab to_lab sch_lab)
+SET(cpu2_APPLIST sch_lab)
 SET(cpu2_FILELIST cfe_es_startup.scr)
 SET(cpu2_SYSTEM i686-linux-gnu)
 
+SET(cpu3_PROCESSORID 3)
+SET(cpu3_APPLIST sch_lab)
+SET(cpu3_FILELIST cfe_es_startup.scr)
+SET(cpu3_SYSTEM i686-linux-gnu)

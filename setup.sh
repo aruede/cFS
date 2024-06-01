@@ -3,6 +3,5 @@
 git submodule init
 git submodule update
 
-cp ./cfe/cmake/Makefile.sample Makefile
-cp -r ./cfe/cmake/sample_defs sample_defs
+make SIMULATION=native prep
 

@@ -43,6 +43,19 @@ Change it back to Celsius
 
 ### Multi processor example
 
+The multi processor system is on a separate branch. Check it out and set up the system.
+
+```
+git checkout feature/multi-core
+./setup.sh
+```
+
+Build
+
+```
+make install
+```
+
 In the targets.cmake we now have defined 3 different targets, called cpu1, cpu2, cpu3.
 Each target can have a different applist. App listed under MISSION_GLOBAL_APPLIST are common to all targets.
 
@@ -60,11 +73,22 @@ The `default_tec_msgids.h` is overwritten with the `cpu<n>_tec_msgids.h` placed 
 
 ```
 # cpu1
-./build/exe/host/cmdUtil --endian=LE --pktid=0x1890 --cmdcode=4 --string=1:F
+./build/exe/host/cmdUtil --endian=LE --pktid=0x1890
 # cpu2
-./build/exe/host/cmdUtil --endian=LE --pktid=0x1893 --cmdcode=4 --string=1:C
+./build/exe/host/cmdUtil --endian=LE --pktid=0x1893
 # cpu 3
-./build/exe/host/cmdUtil --endian=LE --pktid=0x1896 --cmdcode=4 --string=1:F
+./build/exe/host/cmdUtil --endian=LE --pktid=0x1896
 ```
 
-You can verify the output at the corresponding terminal.
+By default the TEC app sends the house keeping temperature in Celsius.
+The voting algorithm doesnt check the unit of the temperature on purpose. This way we can inject an error and test the voting algorithm.
+
+For example we can instruct CPU2 to send its Hk temperature in Fahrenheit instead of Celsius.
+Issue the related command:
+
+```
+# cpu2: Convert temperature to F
+./build/exe/host/cmdUtil --endian=LE --pktid=0x1893 --cmdcode=4 --string=1:F
+```
+
+Now we should see that CPU2 identifies itself as a faulty node, because it lost the majority vote.

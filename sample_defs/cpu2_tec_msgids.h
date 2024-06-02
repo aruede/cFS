@@ -28,8 +28,6 @@
 
 #define CPU2_MID_CPU_OFFSET 3
 
-#define TEC_SBN_MID     CFE_PLATFORM_CMD_TOPICID_TO_MIDV(CFE_MISSION_TEC_SBN_TOPICID) /* 0x1889 */
-
 /*
 ** TEC Command Message Id's
 */

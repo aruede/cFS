@@ -923,7 +923,7 @@
 **  \par Limits
 **       This number must be less than or equal to INT_MAX/1000
 */
-#define CFE_PLATFORM_EVS_MAX_APP_EVENT_BURST 32
+#define CFE_PLATFORM_EVS_MAX_APP_EVENT_BURST 3200
 
 /**
 **  \cfeevscfg Sustained number of event messages per second per app before squelching
@@ -1007,7 +1007,7 @@
 **  \par Limits
 **       The valid settings are 0x0 to 0xF.
 */
-#define CFE_PLATFORM_EVS_DEFAULT_TYPE_FLAG 0xE
+#define CFE_PLATFORM_EVS_DEFAULT_TYPE_FLAG 0xF
 
 /**
 **  \cfeevscfg Default EVS Local Event Log Mode
@@ -1023,7 +1023,7 @@
 **  \par Limits
 **       The valid settings are 0 or 1
 */
-#define CFE_PLATFORM_EVS_DEFAULT_LOG_MODE 1
+#define CFE_PLATFORM_EVS_DEFAULT_LOG_MODE 0
 
 /**
 **  \cfeevscfg Default EVS Message Format Mode

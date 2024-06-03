@@ -1,19 +1,23 @@
 
-# Introduction
+## Introduction
+
+This Repository (and the oncluded submodules) contains an implementation of a triple core system that independently read out a (fake) temperature and shares this data to the other nodes via the SBN.
+Each node performs a majority voting on the selected temperature.
+CPU 1 sends out the house keeping data via the TO_LAB app.
 
 ## How to get started
 
-Run the setup script to autmatically set up the repositories and the make environment
+Run the setup script to autmatically set up the repositories and the Cmake environment and build the system.
 ```
-./setup.py
-```
-
-Build the system
-```
+./setup.sh
 make install
 ```
 
-## Example
+## Single Processor Example
+
+(Optinally:) Check out the branch `single-core` for a continous random temperature value. The `main` branch only provides a constant temperature value.
+
+![image](doc/tec_app_single.drawio.png)
 
 Run the processor
 ```
@@ -41,23 +45,12 @@ Change it back to Celsius
 ./build/exehost/cmdUtil --endian=LE --pktid=0x1890 --cmdcode=4 --string=1:C
 ```
 
-### Multi processor example
+## Multi Processor Example
 
-The multi processor system is on a separate branch. Check it out and set up the system.
-
-```
-git checkout feature/multi-core
-./setup.sh
-```
-
-Build
-
-```
-make install
-```
+![image](doc/tec_app_multi.drawio.png)
 
 In the targets.cmake we now have defined 3 different targets, called cpu1, cpu2, cpu3.
-Each target can have a different applist. App listed under MISSION_GLOBAL_APPLIST are common to all targets.
+Each target can have a different applist. Apps listed under MISSION_GLOBAL_APPLIST are common to all targets.
 
 By placing a file `cpu<n>_cfe_es_startup.scr` we can define the startup script for each target separately.
 
